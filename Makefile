@@ -6,31 +6,32 @@
 #    By: fhignett <fhignett@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/01/24 12:18:10 by rkuijper       #+#    #+#                 #
-#    Updated: 2019/03/27 13:47:17 by fhignett      ########   odam.nl          #
+#    Updated: 2019/04/30 11:19:13 by fhignett      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
-INCL = -Ilibft -Iminilibx_macos
-LIB = -Lminilibx_macos -lmlx -Llibft -lft
+INCL = -Iincludes -Iminilibx_macos
+LIB = -Lminilibx_macos -lmlx printflibft.a
+FRAMEWORK = -framework OpenGL -framework AppKit
 FILESC = *.c
 FILESO = $(FILESC:.c=.o)
+FLAGS = -Wall -Werror -Wextra # ADD ME LATER
 
 all: $(NAME)
 
 $(NAME):
 	@echo "Compiling..."
-	@make -C libft
-	@gcc -Wall -Werror -Wextra -o $(NAME) $(FILESC) $(LIB) $(INCL) -framework OpenGL -framework AppKit
+	@gcc -o $(NAME) $(FILESC) $(LIB) $(INCL) $(FRAMEWORK)
+	@make clean
 	@echo "Done!"
 
 clean:
 	@echo "Removing object files..."
 	@rm -f $(FILESO)
-	@make -C libft clean
+
 fclean: clean
 	@echo "Removing binaries..."
 	@rm -f $(NAME)
-	@make -C libft fclean
 
 re: fclean all
