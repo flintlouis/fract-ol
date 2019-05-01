@@ -6,38 +6,11 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:01:26 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/04/30 16:37:27 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/01 16:03:15 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-static void			calc_pixel(int *x, int *y)
-{
-	if (*x == (WIDTH - 1))
-	{
-		*y += 1;
-		*x = 0;
-	}
-	else
-		*x += 1;
-}
-
-static int			mandel(t_mlx *mlx)
-{
-	int x;
-	int y;
-
-	x = 0;
-	y = 0;
-	while (y < HEIGHT)
-	{
-		draw_mandel(mlx, x, y);
-		calc_pixel(&x, &y);
-	}
-	mlx_put_image_to_window(mlx->init, mlx->win, mlx->image, 0, 0);
-	return (0);
-}
 
 static t_mlx		*init_window(void)
 {
@@ -52,14 +25,27 @@ static t_mlx		*init_window(void)
 	return (mlx);
 }
 
-void		init_fractol(char *fract)
+static	int		check_fract(char *fract)
+{
+	if (ft_strequ(fract, "mandel"))
+		return (1);
+	else if (ft_strequ(fract, "julia"))
+		return (2);
+	else if (ft_strequ(fract, "ship"))
+		return (3);
+	return (0);
+}
+
+static	void		init_fractol(int fract)
 {
 	t_mlx	*mlx;
 
 	mlx = init_window();
 	init_keyconf(mlx);
-	mlx_loop_hook(mlx->init, mandel, mlx);
-	
+	if (fract == 1)
+	{
+		mlx_loop_hook(mlx->init, start_mandel, mlx);
+	}
 	mlx_hook(mlx->win, 2, 1L << 0, press_key, mlx);
 	mlx_hook(mlx->win, 17, 1L << 17, close_window, NULL);
 
@@ -68,9 +54,17 @@ void		init_fractol(char *fract)
 
 int			main(int argc, char **argv)
 {
+	int fract;
+	
 	if (argc != 2)
 		ft_putendl("Usage: ./fractol [fractolname]");
 	else
-		init_fractol(argv[1]);
+	{
+		fract = check_fract(argv[1]);
+		if (!fract)
+			ft_putendl("Usage: ./fractol [fractolname]");
+		else
+			init_fractol(fract);
+	}
 	return (0);
 }

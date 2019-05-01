@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/09 14:45:47 by fhignett       #+#    #+#                */
-/*   Updated: 2019/04/18 12:24:16 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/04/30 17:41:00 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,7 @@ char				*ft_lstfold(t_list *head, const char *glue);
 
 char				**ft_strsplit(char const *s, char c);
 
-float				ft_clamp(int min, int max, float z);
-
+double				ft_clamp(int min, int max, double z);
 double				ft_map(double n, double a, double b, double y, double z);
 
 int					ft_sqrt(int nb);
