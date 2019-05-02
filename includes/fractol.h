@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:03:10 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/02 17:12:48 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/02 18:45:58 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@
 # define HEIGHT			800
 # define WIDTH			1200
 # define BLACK			set_colour(0x00, 0x00, 0x00)
-# define WHITE			set_colour(0xFF, 0xFF, 0xFF)
 # define NEON			set_colour(0x33, 0xFF, 0x83)
+# define AQUA			set_colour(0x25, 0x84, 0xDE)
+# define RED			set_colour(0xDE, 0x2A, 0x25)
 # define MEM(x)			(x*)ft_memalloc(sizeof(x))
 # define KEYCONF		mlx->keyconf
 # define USAGE			ft_putendl("Usage:  ./fractol [fractolname]\n   \
