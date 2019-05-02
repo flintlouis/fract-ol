@@ -6,13 +6,24 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/19 12:54:42 by fhignett       #+#    #+#                */
-/*   Updated: 2019/05/01 12:48:30 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/02 11:18:22 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	put_pixel(int x, int y, t_mlx *mlx, t_colour colour)
+void		calc_pixel_pos(int *x, int *y)
+{
+	if (*x == (WIDTH - 1))
+	{
+		*y += 1;
+		*x = 0;
+	}
+	else
+		*x += 1;
+}
+
+void		put_pixel(int x, int y, t_mlx *mlx, t_colour colour)
 {
 	int i;
 

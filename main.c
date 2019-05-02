@@ -6,11 +6,42 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:01:26 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/01 16:03:15 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/02 11:45:38 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+static	int			start_fract(t_mlx *mlx)
+{
+	int			i;
+	t_mlx		data[12];
+	pthread_t	threads[12];
+
+	i = 0;
+	while (i < 12)
+	{
+		// Copy mlx data into data[i].
+		ft_memcpy(&data[i], mlx, sizeof(t_mlx));
+		// Change new mlx data (data[i]) to have x new start and end y.
+		data[i].y[0] = (HEIGHT / 12) * i;
+		data[i].y[1] = (HEIGHT / 12) * (i + 1);
+		// Create the thread with data[i].
+		if (mlx->fract == 1)
+			pthread_create(&threads[i], NULL, mandel, &data[i]);
+		else if (mlx->fract == 2)
+			pthread_create(&threads[i], NULL, julia, &data[i]);
+		i++;
+	}
+	while (i > 0)
+	{
+		i--;
+		// Join thread threads[i].
+		pthread_join(threads[i], NULL);
+	}
+	mlx_put_image_to_window(mlx->init, mlx->win, mlx->image, 0, 0);
+	return (0);
+}
 
 static t_mlx		*init_window(void)
 {
@@ -42,10 +73,11 @@ static	void		init_fractol(int fract)
 
 	mlx = init_window();
 	init_keyconf(mlx);
-	if (fract == 1)
-	{
-		mlx_loop_hook(mlx->init, start_mandel, mlx);
-	}
+	mlx->fract = fract;
+	mlx_loop_hook(mlx->init, start_fract, mlx);
+	mlx_hook(mlx->win, 4, 1L << 2, mouse_press, mlx);
+	mlx_hook(mlx->win, 5, 1L << 3, mouse_release, mlx);
+	mlx_hook(mlx->win, 6, 1L << 6, mouse_move, mlx);
 	mlx_hook(mlx->win, 2, 1L << 0, press_key, mlx);
 	mlx_hook(mlx->win, 17, 1L << 17, close_window, NULL);
 

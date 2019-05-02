@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:03:10 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/01 16:22:27 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/02 11:44:34 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,22 @@ typedef	struct			s_mlx
 	int					bits_per_pixel;
 	int					size_line;
 	int					endian;
-	int					y[2];
+	int					fract;
+	int					y[2]; /* maybe diff struct? */
+	t_point				point;
 	t_keyconf			*keyconf;
 }						t_mlx;
 
 int						press_key(int key, t_mlx *mlx);
 int						close_window(void *ptr);
-int						start_mandel(t_mlx *mlx);
+int						mouse_move(int x, int y, t_mlx *mlx);
+int						mouse_press(int button, int x, int y, t_mlx *mlx);
+int						mouse_release(int button, int x, int y, t_mlx *mlx);
+void					*julia(void *data);
+void					*mandel(void *data);
 void					put_pixel(int x, int y, t_mlx *mlx, t_colour colour);
 void					init_keyconf(t_mlx *mlx);
+void					calc_pixel_pos(int *x, int *y);
 t_colour				set_colour(t_byte r, t_byte g, t_byte b);
 t_colour				calc_colour(double c, int min, int max, t_colour min_c, t_colour max_c);
 

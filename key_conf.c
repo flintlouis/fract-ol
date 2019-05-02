@@ -6,11 +6,32 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 14:18:18 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/01 15:45:06 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/02 12:14:13 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int				mouse_move(int x, int y, t_mlx *mlx)
+{
+	mlx->point = (t_point){(x - (WIDTH / 2)) * 3, (y - (HEIGHT / 2)) * 3};
+	return (0);
+}
+
+int				mouse_press(int button, int x, int y, t_mlx *mlx)
+{
+	(void)x;
+	(void)y;
+	return (0);
+}
+
+int				mouse_release(int button, int x, int y, t_mlx *mlx)
+{
+	(void)x;
+	(void)y;
+	(void)mlx;
+	return (0);
+}
 
 void		reset_fract(t_mlx *mlx)
 {
