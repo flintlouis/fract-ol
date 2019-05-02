@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 14:18:18 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/02 12:14:13 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/02 16:24:00 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int				mouse_move(int x, int y, t_mlx *mlx)
 {
-	mlx->point = (t_point){(x - (WIDTH / 2)) * 3, (y - (HEIGHT / 2)) * 3};
+	if (KEYCONF->mouse_click == 0)
+		mlx->point = (t_point){(x - (WIDTH / 2)) * 3, (y - (HEIGHT / 2)) * 3};
 	return (0);
 }
 
@@ -22,6 +23,13 @@ int				mouse_press(int button, int x, int y, t_mlx *mlx)
 {
 	(void)x;
 	(void)y;
+	if (button == R_MOUSE)
+	{		
+		if (KEYCONF->mouse_click == 0)
+			KEYCONF->mouse_click = 1;
+		else
+			KEYCONF->mouse_click = 0;
+	}	
 	return (0);
 }
 
@@ -62,7 +70,10 @@ int			press_key(int key, t_mlx *mlx)
 	if (key == KEY_W)
 		KEYCONF->itter += 1;
 	if (key == KEY_S)
-		KEYCONF->itter -= 1;
+	{
+		if (KEYCONF->itter > 10)
+			KEYCONF->itter -= 1;
+	}
 	if (key == KEY_RIGHT)
 		KEYCONF->x_pos += 0.05 * KEYCONF->zoom;
 	if (key == KEY_LEFT)
@@ -82,12 +93,13 @@ int			press_key(int key, t_mlx *mlx)
 	}
 	if (key == KEY_D)
 	{
-		if (KEYCONF->glow > -45)
+		if (KEYCONF->glow > -40)
 			KEYCONF->glow -= .5;
 	}
 	if (key == KEY_SPACE)
 		reset_fract(mlx);
 	
 	// ft_printf("key : %d\n", key);
+	// ft_printf("%d\n", KEYCONF->itter);
 	return (0);
 }

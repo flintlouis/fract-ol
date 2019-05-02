@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:03:10 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/02 11:44:34 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/02 17:12:48 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 # define NEON			set_colour(0x33, 0xFF, 0x83)
 # define MEM(x)			(x*)ft_memalloc(sizeof(x))
 # define KEYCONF		mlx->keyconf
+# define USAGE			ft_putendl("Usage:  ./fractol [fractolname]\n   \
+• Mandelbrot\t  : mandel\n   • Julia\t  : julia\n   • Burning Ship : ship")
+# define NAME			(char*[3]){"Mandelbrot", "Julia", "Burning Ship"}
 
 # define KEY_ESC		53
 # define KEY_SPACE		49
@@ -40,6 +43,11 @@
 # define KEY_D			2
 # define KEY_PLUS		24
 # define KEY_MIN		27
+# define R_MOUSE		1
+# define L_MOUSE		2
+# define WHEEL_FORW		4
+# define WHEEL_BACK		5
+
 
 typedef unsigned char 	t_byte;
 
@@ -58,6 +66,7 @@ typedef struct			s_colour
 
 typedef	struct			s_keyconf
 {
+	int					mouse_click;
 	int					itter;
 	double				x_pos;
 	double				y_pos;
@@ -87,6 +96,7 @@ int						mouse_press(int button, int x, int y, t_mlx *mlx);
 int						mouse_release(int button, int x, int y, t_mlx *mlx);
 void					*julia(void *data);
 void					*mandel(void *data);
+void					*ship(void *data);
 void					put_pixel(int x, int y, t_mlx *mlx, t_colour colour);
 void					init_keyconf(t_mlx *mlx);
 void					calc_pixel_pos(int *x, int *y);

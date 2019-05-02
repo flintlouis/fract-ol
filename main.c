@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:01:26 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/02 11:45:38 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/02 17:12:32 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static	int			start_fract(t_mlx *mlx)
 			pthread_create(&threads[i], NULL, mandel, &data[i]);
 		else if (mlx->fract == 2)
 			pthread_create(&threads[i], NULL, julia, &data[i]);
+		else
+			pthread_create(&threads[i], NULL, ship, &data[i]);
 		i++;
 	}
 	while (i > 0)
@@ -43,13 +45,14 @@ static	int			start_fract(t_mlx *mlx)
 	return (0);
 }
 
-static t_mlx		*init_window(void)
+static t_mlx		*init_window(int fract)
 {
 	t_mlx	*mlx;
 
 	mlx = MEM(t_mlx);
+	mlx->fract = fract;
 	mlx->init = mlx_init();
-	mlx->win = mlx_new_window(mlx->init, WIDTH, HEIGHT, "Fractol");
+	mlx->win = mlx_new_window(mlx->init, WIDTH, HEIGHT, NAME[fract - 1]);
 	mlx->image = mlx_new_image(mlx->init, WIDTH, HEIGHT);
 	mlx->data_addr = mlx_get_data_addr(mlx->image, &(mlx->bits_per_pixel),
 	&(mlx->size_line), &(mlx->endian));
@@ -71,9 +74,8 @@ static	void		init_fractol(int fract)
 {
 	t_mlx	*mlx;
 
-	mlx = init_window();
+	mlx = init_window(fract);
 	init_keyconf(mlx);
-	mlx->fract = fract;
 	mlx_loop_hook(mlx->init, start_fract, mlx);
 	mlx_hook(mlx->win, 4, 1L << 2, mouse_press, mlx);
 	mlx_hook(mlx->win, 5, 1L << 3, mouse_release, mlx);
@@ -87,14 +89,14 @@ static	void		init_fractol(int fract)
 int			main(int argc, char **argv)
 {
 	int fract;
-	
+
 	if (argc != 2)
-		ft_putendl("Usage: ./fractol [fractolname]");
+		USAGE;
 	else
 	{
 		fract = check_fract(argv[1]);
 		if (!fract)
-			ft_putendl("Usage: ./fractol [fractolname]");
+			USAGE;
 		else
 			init_fractol(fract);
 	}
