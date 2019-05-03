@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:03:10 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/02 18:45:58 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/03 15:23:32 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 
+# define THREAD			60
 # define HEIGHT			800
 # define WIDTH			1200
 # define BLACK			set_colour(0x00, 0x00, 0x00)
@@ -30,7 +31,6 @@
 # define KEYCONF		mlx->keyconf
 # define USAGE			ft_putendl("Usage:  ./fractol [fractolname]\n   \
 • Mandelbrot\t  : mandel\n   • Julia\t  : julia\n   • Burning Ship : ship")
-# define NAME			(char*[3]){"Mandelbrot", "Julia", "Burning Ship"}
 
 # define KEY_ESC		53
 # define KEY_SPACE		49
@@ -48,6 +48,9 @@
 # define L_MOUSE		2
 # define WHEEL_FORW		4
 # define WHEEL_BACK		5
+# define KEY_1			18
+# define KEY_2			19
+# define KEY_3			20
 
 
 typedef unsigned char 	t_byte;
@@ -85,7 +88,7 @@ typedef	struct			s_mlx
 	int					size_line;
 	int					endian;
 	int					fract;
-	int					y[2]; /* maybe diff struct? */
+	int					y[2];
 	t_point				point;
 	t_keyconf			*keyconf;
 }						t_mlx;
@@ -95,6 +98,8 @@ int						close_window(void *ptr);
 int						mouse_move(int x, int y, t_mlx *mlx);
 int						mouse_press(int button, int x, int y, t_mlx *mlx);
 int						mouse_release(int button, int x, int y, t_mlx *mlx);
+int						frames(void);
+void					onscreentext(t_mlx *mlx);;
 void					*julia(void *data);
 void					*mandel(void *data);
 void					*ship(void *data);

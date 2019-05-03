@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 14:18:18 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/02 18:54:57 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/03 15:25:01 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,25 @@ int				mouse_press(int button, int x, int y, t_mlx *mlx)
 
 int				mouse_release(int button, int x, int y, t_mlx *mlx)
 {
-	(void)x;
-	(void)y;
-	if (button == R_MOUSE)
+	// (void)x;
+	// (void)y;
+	if (button == R_MOUSE && mlx->fract == 2)
 	{		
 		if (KEYCONF->mouse_click == 0)
 			KEYCONF->mouse_click = 1;
 		else
 			KEYCONF->mouse_click = 0;
+		ft_printf("x : %d y : %d\n", x, y);		
 	}
 	return (0);
 }
 
 void		reset_fract(t_mlx *mlx)
 {
-	KEYCONF->itter = 50;
+	if (mlx->fract != 2)
+		KEYCONF->itter = 50;
+	else
+		KEYCONF->itter = 85;
 	KEYCONF->zoom = 1.0;
 	KEYCONF->x_pos = 0;
 	KEYCONF->y_pos = 0;
@@ -101,6 +105,21 @@ int			press_key(int key, t_mlx *mlx)
 	}
 	if (key == KEY_SPACE)
 		reset_fract(mlx);
+	if (key == KEY_1)
+	{
+		mlx->fract = 1;
+		reset_fract(mlx);
+	}
+	if (key == KEY_2)
+	{
+		mlx->fract = 2;
+		reset_fract(mlx);
+	}
+	if (key == KEY_3)
+	{
+		mlx->fract = 3;
+		reset_fract(mlx);
+	}
 	
 	// ft_printf("key : %d\n", key);
 	// ft_printf("%d\n", KEYCONF->itter);
