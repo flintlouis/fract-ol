@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:01:26 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/03 17:28:51 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/03 18:25:14 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static	int		check_fract(char *fract)
 		return (1);
 	else if (ft_strequ(fract, "ship"))
 		return (2);
-	return (0);
+	return (-1);
 }
 
 static	void		init_fractol(int fract)
@@ -77,8 +77,6 @@ static	void		init_fractol(int fract)
 	mlx = init_window();
 	mlx->fract = fract;
 	init_keyconf(mlx);
-	//get time sla op in static var
-	//frames/ get time
 	mlx_loop_hook(mlx->init, start_fract, mlx);
 	mlx_hook(mlx->win, 4, 1L << 2, mouse_press, mlx);
 	mlx_hook(mlx->win, 5, 1L << 3, mouse_release, mlx);
@@ -92,12 +90,21 @@ int			main(int argc, char **argv)
 {
 	int fract;
 
-	if (argc != 2)
+	if (argc != 2 && argc != 3)
 		USAGE;
 	else
 	{
 		fract = check_fract(argv[1]);
-		ft_putendl(NAME[fract]);
+		if (argc == 3 && fract != -1)
+		{
+			if (ft_strequ(argv[2], "--options"))
+				OPTIONS;
+			else
+			{
+				USAGE;
+				return (0);
+			}
+		}
 		if (fract == -1)
 			USAGE;
 		else

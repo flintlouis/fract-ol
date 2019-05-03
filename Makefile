@@ -6,7 +6,7 @@
 #    By: fhignett <fhignett@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/01/24 12:18:10 by rkuijper       #+#    #+#                 #
-#    Updated: 2019/04/30 11:19:13 by fhignett      ########   odam.nl          #
+#    Updated: 2019/05/03 17:45:39 by fhignett      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,17 +21,16 @@ FLAGS = -Wall -Werror -Wextra # ADD ME LATER
 all: $(NAME)
 
 $(NAME):
-	@echo "Compiling..."
+	@echo "Creating fractols..."
 	@gcc -o $(NAME) $(FILESC) $(LIB) $(INCL) $(FRAMEWORK)
 	@make clean
-	@echo "Done!"
+	@echo "Voila!"
 
 clean:
-	@echo "Removing object files..."
 	@rm -f $(FILESO)
 
 fclean: clean
-	@echo "Removing binaries..."
+	@echo "Poof they're gone..."
 	@rm -f $(NAME)
 
 re: fclean all

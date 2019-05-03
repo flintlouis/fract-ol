@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 14:18:18 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/03 17:42:15 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/03 18:15:32 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,11 @@ int				mouse_press(int button, int x, int y, t_mlx *mlx)
 
 int				mouse_release(int button, int x, int y, t_mlx *mlx)
 {
-	// (void)x;
-	// (void)y;
+	(void)x;
+	(void)y;
 	if (button == R_MOUSE && mlx->fract == 1)
-	{		
-		if (KEYCONF->mouse_click == 0)
-			KEYCONF->mouse_click = 1;
-		else
-			KEYCONF->mouse_click = 0;
-	}
-	if (button == R_MOUSE && (x >= 30 && x <= 40) && (y >= 40 && y <= 50))
+		KEYCONF->mouse_click = (KEYCONF->mouse_click == 0 ? 1 : 0);	
+	if (button == L_MOUSE && (x >= 30 && x <= 40) && (y >= 40 && y <= 50))
 	{
 		if (KEYCONF->info == 0)
 			KEYCONF->info = 1;
