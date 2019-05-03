@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 14:18:18 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/03 15:25:01 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/03 17:21:11 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,27 @@ int				mouse_release(int button, int x, int y, t_mlx *mlx)
 {
 	// (void)x;
 	// (void)y;
-	if (button == R_MOUSE && mlx->fract == 2)
+	if (button == R_MOUSE && mlx->fract == 1)
 	{		
 		if (KEYCONF->mouse_click == 0)
 			KEYCONF->mouse_click = 1;
 		else
 			KEYCONF->mouse_click = 0;
-		ft_printf("x : %d y : %d\n", x, y);		
+	}
+	if (button == R_MOUSE && (x >= 30 && x <= 40) && (y >= 40 && y <= 50))
+	{
+		if (KEYCONF->info == 0)
+			KEYCONF->info = 1;
+		else
+			KEYCONF->info = 0;
+	ft_printf("x : %d y : %d\n", x, y);
 	}
 	return (0);
 }
 
 void		reset_fract(t_mlx *mlx)
 {
-	if (mlx->fract != 2)
+	if (mlx->fract != 1)
 		KEYCONF->itter = 50;
 	else
 		KEYCONF->itter = 85;
@@ -55,6 +62,7 @@ void		reset_fract(t_mlx *mlx)
 	KEYCONF->x_pos = 0;
 	KEYCONF->y_pos = 0;
 	KEYCONF->glow = 3;
+	KEYCONF->info = 1; ////  delete me later
 }
 
 void	init_keyconf(t_mlx *mlx)
@@ -107,17 +115,17 @@ int			press_key(int key, t_mlx *mlx)
 		reset_fract(mlx);
 	if (key == KEY_1)
 	{
-		mlx->fract = 1;
+		mlx->fract = 0;
 		reset_fract(mlx);
 	}
 	if (key == KEY_2)
 	{
-		mlx->fract = 2;
+		mlx->fract = 1;
 		reset_fract(mlx);
 	}
 	if (key == KEY_3)
 	{
-		mlx->fract = 3;
+		mlx->fract = 2;
 		reset_fract(mlx);
 	}
 	

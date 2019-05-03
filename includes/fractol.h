@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:03:10 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/03 15:23:32 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/03 17:04:54 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define KEYCONF		mlx->keyconf
 # define USAGE			ft_putendl("Usage:  ./fractol [fractolname]\n   \
 • Mandelbrot\t  : mandel\n   • Julia\t  : julia\n   • Burning Ship : ship")
+# define NAME			char*[3] = {"Mandelbrot", "Julia", "Burning Ship"}
 
 # define KEY_ESC		53
 # define KEY_SPACE		49
@@ -70,6 +71,7 @@ typedef struct			s_colour
 
 typedef	struct			s_keyconf
 {
+	int					info;
 	int					mouse_click;
 	int					itter;
 	double				x_pos;

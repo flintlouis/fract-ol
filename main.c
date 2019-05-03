@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:01:26 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/03 15:16:27 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/03 17:21:53 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static	int			start_fract(t_mlx *mlx)
 		data[i].y[0] = (HEIGHT / THREAD) * i;
 		data[i].y[1] = (HEIGHT / THREAD) * (i + 1);
 		// Create the thread with data[i].
-		if (mlx->fract == 1)
+		if (mlx->fract == 0)
 			pthread_create(&threads[i], NULL, mandel, &data[i]);
-		else if (mlx->fract == 2)
+		else if (mlx->fract == 1)
 			pthread_create(&threads[i], NULL, julia, &data[i]);
 		else
 			pthread_create(&threads[i], NULL, ship, &data[i]);
@@ -62,11 +62,11 @@ static t_mlx		*init_window(void)
 static	int		check_fract(char *fract)
 {
 	if (ft_strequ(fract, "mandel"))
-		return (1);
+		return (0);
 	else if (ft_strequ(fract, "julia"))
-		return (2);
+		return (1);
 	else if (ft_strequ(fract, "ship"))
-		return (3);
+		return (2);
 	return (0);
 }
 
@@ -92,12 +92,13 @@ int			main(int argc, char **argv)
 {
 	int fract;
 
+	ft_putendl(NAME[0]);
 	if (argc != 2)
 		USAGE;
 	else
 	{
 		fract = check_fract(argv[1]);
-		if (!fract)
+		if (fract == -1)
 			USAGE;
 		else
 			init_fractol(fract);
