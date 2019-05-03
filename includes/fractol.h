@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:03:10 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/03 18:22:53 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/03 18:28:56 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@
 # define MEM(x)			(x*)ft_memalloc(sizeof(x))
 # define KEYCONF		mlx->keyconf
 # define NAME			(char*[3]){"Mandelbrot", "Julia", "Burning Ship"}
-# define USAGE			ft_putendl("Usage:  ./fractol [fractolname] [--options]\n\
-   • Mandelbrot\t  : mandel\n   • Julia\t  : julia\n   • Burning Ship : ship")
-# define OPTIONS		ft_putendl("Keys :\n\t1\t\t: Mandelbrot\n\t2\t\t: Julia\n\t3\t\t: Burningship\n\tW,A,S,D\t\t: Move\n\
-\tUp,Down\t\t: Change itteration\n\tLeft,Right\t: Change glow\n\tMouse wheel,-,+\t: Zoom\n\tRight mouse\t: Pause\n\tSpace\t\t: Reset\n\tEsc\t\t: Exit")
+# define USAGE			ft_putendl("Usage:  ./fractol [fractolname] [--options]\
+\n   • Mandelbrot\t  : mandel\n   • Julia\t  : julia\n   • Burning Ship : ship")
+# define OPTIONS		ft_putendl("Keys :\n\t1\t\t: Mandelbrot\n\t2\t\t: Julia\
+\n\t3\t\t: Burningship\n\tW,A,S,D\t\t: Move\n\tUp,Down\t\t: Change itteration\n\
+\tLeft,Right\t: Change glow\n\tMouse wheel,-,+\t: Zoom\n\tRight mouse\t: Pause\
+\n\tSpace\t\t: Reset\n\tEsc\t\t: Exit")
 
 # define KEY_ESC		53
 # define KEY_SPACE		49
