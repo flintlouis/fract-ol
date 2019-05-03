@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/03 15:14:25 by fhignett       #+#    #+#                */
-/*   Updated: 2019/05/03 17:20:48 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/03 17:39:50 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,12 @@ static void	display_info(t_mlx *mlx, int *c)
 	free(info);
 
 	mlx_string_put(mlx->init, mlx->win, 40, 90, c[mlx->fract], "GLOW  :");
-	info = ft_itoa(KEYCONF->glow);
+	info = ft_itoa(ft_map(KEYCONF->glow, -40, 45, 0, 100));
 	mlx_string_put(mlx->init, mlx->win, 120, 90, c[mlx->fract], info);
 	free(info);
 
-	mlx_string_put(mlx->init, mlx->win, 40, 110, c[mlx->fract], "ZOOM  :");
-	info = ft_itoa(KEYCONF->zoom);
-	mlx_string_put(mlx->init, mlx->win, 120, 110, c[mlx->fract], info);
-	free(info);
-
-	mlx_string_put(mlx->init, mlx->win, 40, 130, c[mlx->fract], "FRACT :");
-	// mlx_string_put(mlx->init, mlx->win, 105, 130, c[mlx->fract], NAME[mlx->fract]);
+	mlx_string_put(mlx->init, mlx->win, 40, 110, c[mlx->fract], "FRACT :");
+	mlx_string_put(mlx->init, mlx->win, 120, 110, c[mlx->fract], NAME[mlx->fract]);
 }
 
 static void	info(t_mlx *mlx)

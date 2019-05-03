@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:03:10 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/03 17:04:54 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/03 17:29:32 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@
 # define RED			set_colour(0xDE, 0x2A, 0x25)
 # define MEM(x)			(x*)ft_memalloc(sizeof(x))
 # define KEYCONF		mlx->keyconf
+# define NAME			(char*[3]){"Mandelbrot", "Julia", "Burning Ship"}
 # define USAGE			ft_putendl("Usage:  ./fractol [fractolname]\n   \
 • Mandelbrot\t  : mandel\n   • Julia\t  : julia\n   • Burning Ship : ship")
-# define NAME			char*[3] = {"Mandelbrot", "Julia", "Burning Ship"}
+
 
 # define KEY_ESC		53
 # define KEY_SPACE		49

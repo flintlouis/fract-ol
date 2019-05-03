@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 14:18:18 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/03 17:21:11 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/03 17:42:15 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int				mouse_release(int button, int x, int y, t_mlx *mlx)
 			KEYCONF->info = 1;
 		else
 			KEYCONF->info = 0;
-	ft_printf("x : %d y : %d\n", x, y);
+	// ft_printf("x : %d y : %d\n", x, y);
 	}
 	return (0);
 }
@@ -62,7 +62,6 @@ void		reset_fract(t_mlx *mlx)
 	KEYCONF->x_pos = 0;
 	KEYCONF->y_pos = 0;
 	KEYCONF->glow = 3;
-	KEYCONF->info = 1; ////  delete me later
 }
 
 void	init_keyconf(t_mlx *mlx)
@@ -83,7 +82,8 @@ int			press_key(int key, t_mlx *mlx)
 	if (key == KEY_ESC)
 		close_window(NULL);
 	if (key == KEY_UP)
-		KEYCONF->itter += 1;
+		if (KEYCONF->itter < 250)
+			KEYCONF->itter += 1;
 	if (key == KEY_DOWN)
 	{
 		if (KEYCONF->itter > 10)

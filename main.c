@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:01:26 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/03 17:21:53 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/03 17:28:51 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,12 @@ int			main(int argc, char **argv)
 {
 	int fract;
 
-	ft_putendl(NAME[0]);
 	if (argc != 2)
 		USAGE;
 	else
 	{
 		fract = check_fract(argv[1]);
+		ft_putendl(NAME[fract]);
 		if (fract == -1)
 			USAGE;
 		else
