@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 14:18:18 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/03 18:15:32 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/04 16:25:40 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void		reset_fract(t_mlx *mlx)
 	KEYCONF->x_pos = 0;
 	KEYCONF->y_pos = 0;
 	KEYCONF->glow = 3;
+	mlx->colour = mlx->fract;
 }
 
 void	init_keyconf(t_mlx *mlx)
@@ -72,10 +73,23 @@ int			close_window(void *ptr)
 	return (0);
 }
 
+int			release_key(int key, t_mlx *mlx)
+{
+	if (key == KEY_SPACE && KEYCONF->shift == 0)
+		reset_fract(mlx);
+	if (key == KEY_SHIFT)
+		KEYCONF->shift = 0;
+	if (key == KEY_SPACE && KEYCONF->shift == 1)
+		mlx->colour = (mlx->colour + 1) % 3;
+	return (0);
+}
+
 int			press_key(int key, t_mlx *mlx)
 {
 	if (key == KEY_ESC)
 		close_window(NULL);
+	if (key == KEY_SHIFT)
+		KEYCONF->shift = 1;
 	if (key == KEY_UP)
 		if (KEYCONF->itter < 250)
 			KEYCONF->itter += 1;
@@ -106,25 +120,22 @@ int			press_key(int key, t_mlx *mlx)
 		if (KEYCONF->glow > -40)
 			KEYCONF->glow -= .5;
 	}
-	if (key == KEY_SPACE)
-		reset_fract(mlx);
-	if (key == KEY_1)
+	if (key == KEY_1 && mlx->fract != 0)
 	{
 		mlx->fract = 0;
 		reset_fract(mlx);
 	}
-	if (key == KEY_2)
+	if (key == KEY_2 && mlx->fract != 1)
 	{
 		mlx->fract = 1;
 		reset_fract(mlx);
 	}
-	if (key == KEY_3)
+	if (key == KEY_3 && mlx->fract != 2)
 	{
 		mlx->fract = 2;
 		reset_fract(mlx);
-	}
+	}	
 	
 	// ft_printf("key : %d\n", key);
-	// ft_printf("%d\n", KEYCONF->itter);
 	return (0);
 }

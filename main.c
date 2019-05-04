@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:01:26 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/03 18:25:14 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/04 15:57:06 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static	void		init_fractol(int fract)
 	mlx_hook(mlx->win, 5, 1L << 3, mouse_release, mlx);
 	mlx_hook(mlx->win, 6, 1L << 6, mouse_move, mlx);
 	mlx_hook(mlx->win, 2, 1L << 0, press_key, mlx);
+	mlx_hook(mlx->win, 3, 1L << 1, release_key, mlx);
 	mlx_hook(mlx->win, 17, 1L << 17, close_window, NULL);
 	mlx_loop(mlx->init);
 }

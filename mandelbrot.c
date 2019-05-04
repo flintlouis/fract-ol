@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 15:22:41 by fhignett       #+#    #+#                */
-/*   Updated: 2019/05/02 18:04:20 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/04 16:02:51 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static	void		*draw_mandel(t_mlx *mlx, double x, double y)
 	{
 		// smooths itteration
 		i = i - log2(log2(fabs(point.x * point.x + point.y * point.y))) + KEYCONF->glow;
-		put_pixel(x, y, mlx, calc_colour(i, 0, KEYCONF->itter, BLACK, NEON));
+		put_pixel(x, y, mlx, calc_colour(i, 0, KEYCONF->itter, BLACK, FCOLOURS[mlx->colour]));
 	}
 	return (NULL);
 }
