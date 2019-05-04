@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 14:18:18 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/04 17:16:02 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/04 17:35:18 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,10 @@ int				mouse_release(int button, int x, int y, t_mlx *mlx)
 void		reset_fract(t_mlx *mlx)
 {
 	if (mlx->fract != 1)
-		KEYCONF->itter = 50;
+		KEYCONF->itter[1] = 50;
 	else
-		KEYCONF->itter = 85;
+		KEYCONF->itter[1] = 85;
+	KEYCONF->itter[0] = 0;
 	KEYCONF->zoom = 1.0;
 	KEYCONF->x_pos = 0;
 	KEYCONF->y_pos = 0;
@@ -96,12 +97,12 @@ int			press_key(int key, t_mlx *mlx)
 	if (key == KEY_SHIFT)
 		KEYCONF->shift = 1;
 	if (key == KEY_UP)
-		if (KEYCONF->itter < 250)
-			KEYCONF->itter += 1;
+		if (KEYCONF->itter[1] < 250)
+			KEYCONF->itter[1] += 1;
 	if (key == KEY_DOWN)
 	{
-		if (KEYCONF->itter > 10)
-			KEYCONF->itter -= 1;
+		if (KEYCONF->itter[1] > 10)
+			KEYCONF->itter[1] -= 1;
 	}
 	if (key == KEY_D)
 		KEYCONF->x_pos += 0.05 * KEYCONF->zoom;

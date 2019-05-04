@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/19 12:54:42 by fhignett       #+#    #+#                */
-/*   Updated: 2019/05/02 11:18:22 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/04 17:31:44 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ t_colour	set_colour(t_byte r, t_byte g, t_byte b)
 	return (c);
 }
 
-t_colour	calc_colour(double c, int min, int max, t_colour min_c, t_colour max_c)
+t_colour	calc_colour(double c, int *range, t_colour min_c, t_colour max_c)
 {
-	c = ft_map(c, min, max, 0, 1);
+	c = ft_map(c, range[0], range[1], 0, 1);
 	c = ft_clamp(0, 1, c);
 	return (set_colour(
 	(min_c.r * (1 - c) + max_c.r * c),

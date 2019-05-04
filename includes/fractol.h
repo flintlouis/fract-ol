@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:03:10 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/04 17:23:44 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/04 17:33:03 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef	struct			s_keyconf
 	int					info;
 	int					mouse_click;
 	int					shift;
-	int					itter;
+	int					itter[2];
 	double				x_pos;
 	double				y_pos;
 	double				zoom;
@@ -122,6 +122,6 @@ void					put_pixel(int x, int y, t_mlx *mlx, t_colour colour);
 void					init_keyconf(t_mlx *mlx);
 void					calc_pixel_pos(int *x, int *y);
 t_colour				set_colour(t_byte r, t_byte g, t_byte b);
-t_colour				calc_colour(double c, int min, int max, t_colour min_c, t_colour max_c);
+t_colour				calc_colour(double c, int *range, t_colour min_c, t_colour max_c);
 
 #endif
