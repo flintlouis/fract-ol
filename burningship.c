@@ -6,11 +6,12 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 15:22:41 by fhignett       #+#    #+#                */
-/*   Updated: 2019/05/04 16:03:10 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/04 17:15:25 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include <math.h>
 
 static	void		*draw_ship(t_mlx *mlx, double x, double y)
 {

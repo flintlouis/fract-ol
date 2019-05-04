@@ -6,11 +6,12 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/03 15:14:25 by fhignett       #+#    #+#                */
-/*   Updated: 2019/05/04 16:20:35 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/04 17:16:14 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include <stdlib.h>
 
 static void	display_fps(t_mlx *mlx, char *fps)
 {

@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/27 15:00:54 by efrank         #+#    #+#                */
-/*   Updated: 2019/04/18 12:20:11 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/04 17:00:51 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void				print_output(t_arg *arg_list, const char *string,
 t_arg				put_data(t_arg arg, const char *s, va_list ap);
 t_arg				*get_data_list(const char *string, t_arg *arg_list,
 					va_list ap);
-					
+
 t_flags				put_flags(t_arg arg);
 
 #endif

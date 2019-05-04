@@ -6,19 +6,18 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:03:10 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/04 16:38:15 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/04 17:23:44 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
+/* I NEED TO BE NORMINETTED FUCK */
+
 # include "mlx.h"
 # include "libft.h"
 # include "ft_printf.h"
-# include <math.h>
-# include <stdlib.h>
-# include <pthread.h>
 
 # define THREAD			40
 # define HEIGHT			800
@@ -27,7 +26,9 @@
 # define NEON			set_colour(0x33, 0xFF, 0x83)
 # define AQUA			set_colour(0x25, 0x84, 0xDE)
 # define RED			set_colour(0xDE, 0x2A, 0x25)
-# define FCOLOURS		(t_colour[3]){set_colour(0x33, 0xFF, 0x83), set_colour(0x25, 0x84, 0xDE), set_colour(0xDE, 0x2A, 0x25)}
+# define FCOLOURS		(t_colour[3]){set_colour(0x33, 0xFF, 0x83),\
+						set_colour(0x25, 0x84, 0xDE),\
+						set_colour(0xDE, 0x2A, 0x25)}
 # define TCOLOURS		(int[3]){0x33FF83, 0x2584DE, 0xDE2A25}
 # define MEM(x)			(x*)ft_memalloc(sizeof(x))
 # define KEYCONF		mlx->keyconf
@@ -112,7 +113,8 @@ int						mouse_move(int x, int y, t_mlx *mlx);
 int						mouse_press(int button, int x, int y, t_mlx *mlx);
 int						mouse_release(int button, int x, int y, t_mlx *mlx);
 int						frames(void);
-void					onscreentext(t_mlx *mlx);;
+void					init_fractol(int fract);
+void					onscreentext(t_mlx *mlx);
 void					*julia(void *data);
 void					*mandel(void *data);
 void					*ship(void *data);
