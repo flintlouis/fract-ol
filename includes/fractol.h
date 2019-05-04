@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:03:10 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/04 16:24:17 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/04 16:38:15 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ typedef	struct			s_mlx
 	int					fract;
 	int					colour;
 	int					y[2];
+	int					disco;
 	t_point				point;
 	t_keyconf			*keyconf;
 }						t_mlx;

@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 14:18:18 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/04 16:25:40 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/04 16:44:30 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int				mouse_press(int button, int x, int y, t_mlx *mlx)
 		KEYCONF->zoom *= 1.020;
 	else if (button == WHEEL_BACK)
 		KEYCONF->zoom *= 0.980;
+	// ft_printf("x : %d y : %d\n", x, y);
 	return (0);
 }
 
@@ -44,6 +45,8 @@ int				mouse_release(int button, int x, int y, t_mlx *mlx)
 			KEYCONF->info = 0;
 	// ft_printf("x : %d y : %d\n", x, y);
 	}
+	if (button == L_MOUSE && (x >= 1070 && x <= 1090) && (y >= 700 && y <= 720))
+		mlx->disco = 1;
 	return (0);
 }
 
@@ -58,6 +61,7 @@ void		reset_fract(t_mlx *mlx)
 	KEYCONF->y_pos = 0;
 	KEYCONF->glow = 3;
 	mlx->colour = mlx->fract;
+	mlx->disco = 0;
 }
 
 void	init_keyconf(t_mlx *mlx)

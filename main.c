@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:01:26 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/04 15:57:06 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/04 16:51:31 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static	int			start_fract(t_mlx *mlx)
 	pthread_t	threads[THREAD];
 
 	i = 0;
+	if (mlx->disco == 1)
+		mlx->colour = (mlx->colour + 1) % 3;
 	while (i < THREAD)
 	{
 		// Copy mlx data into data[i].
