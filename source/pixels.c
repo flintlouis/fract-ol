@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/19 12:54:42 by fhignett       #+#    #+#                */
-/*   Updated: 2019/05/06 11:14:16 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/06 15:07:35 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		put_pixel(int x, int y, t_mlx *mlx, t_colour colour)
 
 t_colour	calc_colour(double c, int *range, t_colour min_c, t_colour max_c)
 {
-	c = ft_map(c, range[0], range[1], 0, 1);
+	c = ft_map(c, (double[2]){range[0], range[1]}, (double[2]){0, 1});
 	c = ft_clamp(0, 1, c);
 	return ((t_colour){
 	(min_c.r * (1 - c) + max_c.r * c),

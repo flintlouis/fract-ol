@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:03:10 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/06 13:56:09 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/06 14:58:56 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "mlx.h"
 # include "libft.h"
-# include "ft_printf.h"
 
 # define THREAD			40
 # define HEIGHT			800

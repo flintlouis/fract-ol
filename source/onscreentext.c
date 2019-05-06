@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/03 15:14:25 by fhignett       #+#    #+#                */
-/*   Updated: 2019/05/06 13:55:57 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/06 15:19:06 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ static void	display_info(t_mlx *mlx, char *fps)
 	free(info);
 	mlx_string_put(mlx->init, mlx->win, 40, 90, \
 	TCOLOURS[mlx->colour], "GLOW  :");
-	info = ft_itoa(ft_map(KEYCONF->glow, -40, 45, 0, 100));
+	info = ft_itoa(ft_map(KEYCONF->glow,
+	(double[2]){-40, 45}, (double[2]){0, 100}));
 	mlx_string_put(mlx->init, mlx->win, 120, 90, TCOLOURS[mlx->colour], info);
 	free(info);
 	mlx_string_put(mlx->init, mlx->win, 40, 110, \

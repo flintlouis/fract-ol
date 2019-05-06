@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 15:22:41 by fhignett       #+#    #+#                */
-/*   Updated: 2019/05/06 13:16:01 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/06 15:18:26 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ static	t_point		set_point(t_mlx *mlx, double x, double y)
 	t_point	point;
 
 	point = (t_point) {
-		ft_map(x, 0, HEIGHT, -3.7, 1.3) * KEYCONF->zoom + KEYCONF->x_pos,
-		ft_map(y, 0, HEIGHT, -2.5, 2.5) * KEYCONF->zoom + KEYCONF->y_pos};
+		ft_map(x, (double[2]){0, HEIGHT}, (double[2]){-3.7, 1.3})
+		* KEYCONF->zoom + KEYCONF->x_pos,
+		ft_map(y, (double[2]){0, HEIGHT}, (double[2]){-2.5, 2.5})
+		* KEYCONF->zoom + KEYCONF->y_pos};
 	return (point);
 }
 
