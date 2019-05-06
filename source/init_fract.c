@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:01:26 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/06 13:53:36 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/06 17:20:56 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 static	void	join_threads(int i, pthread_t *threads)
 {
-	while (i > 0)
+	while (i >= 0)
 	{
 		i--;
 		pthread_join(threads[i], NULL);
