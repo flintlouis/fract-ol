@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/04 17:24:22 by fhignett       #+#    #+#                */
-/*   Updated: 2019/05/06 12:48:19 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/06 13:53:29 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ static	void	options(void)
 Julia\n\tSpace\t\t: Reset [Shift + Space : change colour]\n\tEsc\t\t: Exit");
 }
 
-static	void	usage(void)
+static	int		usage(void)
 {
 	ft_putendl("Usage:  ./fractol [fractolname] [--options]\n   \
 • Mandelbrot\t  : mandel\n   • Julia\t  : julia\n   • Burning Ship : ship");
+	return (0);
 }
 
 static	int		check_fract(char *fract)
@@ -42,7 +43,7 @@ int				main(int argc, char **argv)
 	int fract;
 
 	if (argc != 2 && argc != 3)
-		usage();
+		return (usage());
 	else
 	{
 		fract = check_fract(argv[1]);
@@ -50,14 +51,13 @@ int				main(int argc, char **argv)
 		{
 			if (ft_strequ(argv[2], "--options"))
 				options();
+			else if (!fract && ft_strequ(argv[2], "42"))
+				fract = 42;
 			else
-			{
-				usage();
-				return (0);
-			}
+				return (usage());
 		}
 		if (fract == -1)
-			usage();
+			return (usage());
 		else
 			init_fractol(fract);
 	}

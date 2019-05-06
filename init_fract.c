@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:01:26 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/04 17:25:28 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/06 13:53:36 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ static	int		start_fract(t_mlx *mlx)
 	pthread_t	threads[THREAD];
 
 	i = 0;
-	if (mlx->disco == 1)
-		mlx->colour = (mlx->colour + 1) % 3;
 	while (i < THREAD)
 	{
 		ft_memcpy(&data[i], mlx, sizeof(t_mlx));
@@ -48,8 +46,10 @@ static	int		start_fract(t_mlx *mlx)
 			pthread_create(&threads[i], NULL, mandel, &data[i]);
 		else if (mlx->fract == 1)
 			pthread_create(&threads[i], NULL, julia, &data[i]);
-		else
+		else if (mlx->fract == 2)
 			pthread_create(&threads[i], NULL, ship, &data[i]);
+		else
+			pthread_create(&threads[i], NULL, mandel42, &data[i]);
 		i++;
 	}
 	join_threads(i, threads);

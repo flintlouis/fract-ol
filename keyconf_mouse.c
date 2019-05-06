@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/06 11:45:51 by fhignett       #+#    #+#                */
-/*   Updated: 2019/05/06 11:46:35 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/06 13:37:05 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,13 @@ int				mouse_press(int button, int x, int y, t_mlx *mlx)
 {
 	(void)x;
 	(void)y;
-	if (button == WHEEL_FORW)
-		KEYCONF->zoom *= 1.020;
-	else if (button == WHEEL_BACK)
-		KEYCONF->zoom *= 0.980;
+	if (mlx->fract != 42)
+	{
+		if (button == WHEEL_FORW)
+			KEYCONF->zoom *= 1.020;
+		else if (button == WHEEL_BACK)
+			KEYCONF->zoom *= 0.980;
+	}
 	return (0);
 }
 
@@ -43,7 +46,9 @@ int				mouse_release(int button, int x, int y, t_mlx *mlx)
 		else
 			KEYCONF->info = 0;
 	}
-	if (button == L_MOUSE && (x >= 1070 && x <= 1090) && (y >= 700 && y <= 720))
-		mlx->disco = 1;
+	if (KEYCONF->info)
+		if (button == L_MOUSE && (x >= 120 && x <= 130)
+		&& (y >= 140 && y <= 150))
+			mlx->disco = (mlx->disco + 1) % 2;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 12:03:10 by nvreeke        #+#    #+#                */
-/*   Updated: 2019/05/06 12:46:06 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/06 13:56:09 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void					onscreentext(t_mlx *mlx);
 void					*julia(void *data);
 void					*mandel(void *data);
 void					*ship(void *data);
+void					*mandel42(void *data);
 void					put_pixel(int x, int y, t_mlx *mlx, t_colour colour);
 void					init_keyconf(t_mlx *mlx);
 void					reset_fract(t_mlx *mlx);

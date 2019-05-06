@@ -6,12 +6,24 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/03 15:14:25 by fhignett       #+#    #+#                */
-/*   Updated: 2019/05/04 17:44:42 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/06 13:55:57 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdlib.h>
+
+static void	disco(t_mlx *mlx)
+{
+	mlx_string_put(mlx->init, mlx->win, 40, 130, \
+	TCOLOURS[mlx->colour], "DISCO :");
+	if (!mlx->disco)
+		mlx_string_put(mlx->init, mlx->win, 120, 130, \
+		TCOLOURS[mlx->colour], "X");
+	else
+		mlx_string_put(mlx->init, mlx->win, 120, 130, \
+		TCOLOURS[mlx->colour], "0");
+}
 
 static void	display_fps(t_mlx *mlx, char *fps)
 {
@@ -40,6 +52,7 @@ static void	display_info(t_mlx *mlx, char *fps)
 	TCOLOURS[mlx->colour], "FRACT :");
 	mlx_string_put(mlx->init, mlx->win, 120, 110, \
 	TCOLOURS[mlx->colour], NAME[mlx->fract]);
+	disco(mlx);
 }
 
 static void	info(t_mlx *mlx)
@@ -60,5 +73,8 @@ static void	info(t_mlx *mlx)
 
 void		onscreentext(t_mlx *mlx)
 {
-	info(mlx);
+	if (mlx->disco == 1)
+		mlx->colour = (mlx->colour + 1) % 3;
+	if (mlx->fract != 42)
+		info(mlx);
 }
