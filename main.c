@@ -6,11 +6,25 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/04 17:24:22 by fhignett       #+#    #+#                */
-/*   Updated: 2019/05/04 17:25:33 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/06 12:48:19 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+static	void	options(void)
+{
+	ft_putendl("Keys :\n\t1\t\t: Mandelbrot\n\t2\t\t: Julia\
+\n\t3\t\t: Burningship\n\tW,A,S,D\t\t: Move\n\tUp,Down\t\t: Change itteration\n\
+\tLeft,Right\t: Change glow\n\tMouse wheel,-,+\t: Zoom\n\tRight mouse\t: Pause \
+Julia\n\tSpace\t\t: Reset [Shift + Space : change colour]\n\tEsc\t\t: Exit");
+}
+
+static	void	usage(void)
+{
+	ft_putendl("Usage:  ./fractol [fractolname] [--options]\n   \
+• Mandelbrot\t  : mandel\n   • Julia\t  : julia\n   • Burning Ship : ship");
+}
 
 static	int		check_fract(char *fract)
 {
@@ -28,22 +42,22 @@ int				main(int argc, char **argv)
 	int fract;
 
 	if (argc != 2 && argc != 3)
-		USAGE;
+		usage();
 	else
 	{
 		fract = check_fract(argv[1]);
 		if (argc == 3 && fract != -1)
 		{
 			if (ft_strequ(argv[2], "--options"))
-				OPTIONS;
+				options();
 			else
 			{
-				USAGE;
+				usage();
 				return (0);
 			}
 		}
 		if (fract == -1)
-			USAGE;
+			usage();
 		else
 			init_fractol(fract);
 	}

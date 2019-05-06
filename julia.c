@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 15:22:41 by fhignett       #+#    #+#                */
-/*   Updated: 2019/05/04 17:46:54 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/06 12:11:22 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,51 @@
 #include <math.h>
 
 /*
-** the (i) calculation smooths the colour gradient
+** Switch var(pos) to var(point) for amazing effect
 */
+
+static	t_point		set_point(t_mlx *mlx, double x, double y)
+{
+	t_point	point;
+
+	point = (t_point) {
+		ft_map(x, 0, HEIGHT, -3.7, 1.3) * KEYCONF->zoom + KEYCONF->x_pos,
+		ft_map(y, 0, HEIGHT, -2.5, 2.5) * KEYCONF->zoom + KEYCONF->y_pos};
+	return (point);
+}
 
 static	void		*draw_julia(t_mlx *mlx, double x, double y)
 {
-	t_point point;
-	t_point pos;
-	double tmp;
-	double i;
+	t_point	point;
+	t_point	pos;
+	double	tmp;
+	double	i;
 
+	i = 0;
 	pos = (t_point){mlx->point.x / WIDTH, mlx->point.y / HEIGHT};
-	point = (t_point){
-		ft_map(x, 0, HEIGHT, -3.7, 1.3)  * KEYCONF->zoom + KEYCONF->x_pos,
-		ft_map(y, 0, HEIGHT, -2.5, 2.5) * KEYCONF->zoom + KEYCONF->y_pos};
-	for (i = 0; i < KEYCONF->itter[1]; i++)
+	point = set_point(mlx, x, y);
+	while (fabs(point.x + point.y) < 6 && i < KEYCONF->itter[1])
 	{
 		tmp = (point.x * point.x - point.y * point.y) + pos.x;
 		point.y = 2 * point.x * point.y + pos.y;
 		point.x = tmp;
-		if (fabs(point.x + point.y) > 6)
-			break ;
+		i++;
 	}
 	if (i == KEYCONF->itter[1])
 		put_pixel(x, y, mlx, BLACK);
 	else
 	{
-		i = i - log2(log2(fabs(point.x * point.x + point.y * point.y))) + KEYCONF->glow;
-		put_pixel(x, y, mlx, calc_colour(i, KEYCONF->itter, BLACK, FCOLOURS[mlx->colour]));
+		i = calc_i(i, mlx, point);
+		put_pixel(x, y, mlx,
+		calc_colour(i, KEYCONF->itter, BLACK, KEYCONF->colours[mlx->colour]));
 	}
 	return (NULL);
 }
 
 void				*julia(void *data)
 {
-	int 		x;
-	t_mlx		*mlx;
+	int		x;
+	t_mlx	*mlx;
 
 	x = 0;
 	mlx = (t_mlx*)data;

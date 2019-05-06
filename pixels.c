@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/19 12:54:42 by fhignett       #+#    #+#                */
-/*   Updated: 2019/05/04 17:31:44 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/06 11:14:16 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,12 @@ void		put_pixel(int x, int y, t_mlx *mlx, t_colour colour)
 	}
 }
 
-t_colour	set_colour(t_byte r, t_byte g, t_byte b)
-{
-	t_colour c;
-
-	c.r = r;
-	c.g = g;
-	c.b = b;
-	return (c);
-}
-
 t_colour	calc_colour(double c, int *range, t_colour min_c, t_colour max_c)
 {
 	c = ft_map(c, range[0], range[1], 0, 1);
 	c = ft_clamp(0, 1, c);
-	return (set_colour(
+	return ((t_colour){
 	(min_c.r * (1 - c) + max_c.r * c),
 	(min_c.g * (1 - c) + max_c.g * c),
-	(min_c.b * (1 - c) + max_c.b * c)));
+	(min_c.b * (1 - c) + max_c.b * c)});
 }

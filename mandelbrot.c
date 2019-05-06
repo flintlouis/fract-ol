@@ -6,7 +6,7 @@
 /*   By: fhignett <fhignett@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 15:22:41 by fhignett       #+#    #+#                */
-/*   Updated: 2019/05/04 18:07:57 by fhignett      ########   odam.nl         */
+/*   Updated: 2019/05/06 12:06:21 by fhignett      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** the (i) calculation smooths the colour gradient
 */
 
-static	double		calc_i(double i, t_mlx *mlx, t_point point)
+double				calc_i(double i, t_mlx *mlx, t_point point)
 {
 	return (i - log2(log2(fabs(point.x * point.x + point.y * point.y)))
 	+ KEYCONF->glow);
@@ -43,13 +43,11 @@ static	void		*draw_mandel(t_mlx *mlx, double x, double y)
 	i = 0;
 	pos = set_position(mlx, x, y);
 	point = (t_point) {pos.x, pos.y};
-	while (i < KEYCONF->itter[1])
+	while (fabs(point.x + point.y) < 6 && i < KEYCONF->itter[1])
 	{
 		tmp = (point.x * point.x - point.y * point.y) + pos.x;
 		point.y = 2 * point.x * point.y + pos.y;
 		point.x = tmp;
-		if (fabs(point.x + point.y) > 6)
-			break ;
 		i++;
 	}
 	if (i == KEYCONF->itter[1])
@@ -58,7 +56,7 @@ static	void		*draw_mandel(t_mlx *mlx, double x, double y)
 	{
 		i = calc_i(i, mlx, point);
 		put_pixel(x, y, mlx,
-		calc_colour(i, KEYCONF->itter, BLACK, FCOLOURS[mlx->colour]));
+		calc_colour(i, KEYCONF->itter, BLACK, KEYCONF->colours[mlx->colour]));
 	}
 	return (NULL);
 }
