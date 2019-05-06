@@ -6,7 +6,7 @@
 #    By: fhignett <fhignett@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/01/24 12:18:10 by rkuijper       #+#    #+#                 #
-#    Updated: 2019/05/03 17:45:39 by fhignett      ########   odam.nl          #
+#    Updated: 2019/05/06 14:09:08 by fhignett      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,15 +14,17 @@ NAME = fractol
 INCL = -Iincludes -Iminilibx_macos
 LIB = -Lminilibx_macos -lmlx printflibft.a
 FRAMEWORK = -framework OpenGL -framework AppKit
-FILESC = *.c
-FILESO = $(FILESC:.c=.o)
-FLAGS = -Wall -Werror -Wextra # ADD ME LATER
+CFILES = fps init_fract init_keyconf burningship julia mandel42 mandelbrot \
+keyconf_keys keyconf_mouse main onscreentext pixels
+SOURCE = $(CFILES:%=source/%.c)
+FILESO = $(SOURCE:.c=.o)
+FLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 
 $(NAME):
 	@echo "Creating fractols..."
-	@gcc -o $(NAME) $(FILESC) $(LIB) $(INCL) $(FRAMEWORK)
+	@gcc -o $(NAME) $(FLAGS) $(SOURCE) $(LIB) $(INCL) $(FRAMEWORK)
 	@make clean
 	@echo "Voila!"
 
